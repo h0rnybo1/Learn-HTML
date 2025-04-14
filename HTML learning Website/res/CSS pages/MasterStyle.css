@@ -1,0 +1,131 @@
+﻿/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(45deg, #2c3e50, #4b79a1); /* Cozy gradient background */
+    color: #ecf0f1; /* Light text color */
+    padding: 20px;
+    margin-left: 5px;
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Header Styling */
+header {
+    background-color: #1a1a1a; /* Very dark purple */
+    color: #ecf0f1; /* Light text color */
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out; /* Animation */
+}
+
+header h1 {
+    color: #88ff88; /* Light green */
+}
+
+/* Section Styling */
+section {
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    color: #ecf0f1; /* Light text color */
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInText 0.5s ease-in-out; /* Quick fade-in animation */
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out; /* Animation */
+}
+
+section:hover {
+    transform: scale(1.02); /* Grow larger on hover */
+    background-color: #2a2a2a; /* Slightly change color on hover */
+}
+
+/* Navigation Styling */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+}
+
+nav ul li {
+    font-size: 14px;
+    margin: 1rem;
+    padding: 20px;
+    flex: 33%;
+    background: linear-gradient(45deg, #2c3e50, #34495e); /* Gradient background */
+    transition: all 0.3s ease-in-out; /* Animation */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out; /* Animation */
+}
+
+/* Add hover effects */
+nav ul li a:hover {
+    color: #3498db; /* Light blue */
+}
+
+nav ul li:hover {
+    transform: translateY(10px);
+    background: linear-gradient(45deg, #34495e, #2c3e50); /* Inverse gradient background */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Pre and Code Styling */
+pre, code {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    overflow: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    display: inline-block; /* Ensure code doesn't hide other text */
+    white-space: pre-wrap; /* Allow code to wrap */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1a1a1a; /* Very dark purple */
+    color: #ecf0f1; /* Light text color */
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out; /* Animation */
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

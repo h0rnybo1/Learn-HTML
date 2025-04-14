@@ -1,0 +1,65 @@
+/* General Styles */
+body {
+    background-color: #1a1a1a; /* Very dark purple */
+    color: #ecf0f1; /* Light text color */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 200px; /* Fixed width for sidebar */
+    height: 100vh;
+    padding: 20px;
+    background: linear-gradient(45deg, #1a1a1a, #2c3e50); /* Gradient background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
+    border-radius: 10px; /* Rounded corners */
+    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+#logo {
+    display: block;
+    margin: 0 auto 20px auto; /* Center the logo and add some margin below */
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 80px;
+}
+
+#nav-title {
+    color: #88ff88; /* Light green */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Navigation Links */
+#nav-table {
+    width: 100%;
+}
+
+.nav-item {
+    margin-bottom: 10px;
+}
+
+.nav-link {
+    color: #ecf0f1; /* Light text color */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Animation */
+}
+
+/* Hover Effect for Navigation Links */
+.nav-link:hover {
+    background-color: #3498db; /* Light blue */
+    transform: scale(1.05); /* Grow larger on hover */
+    color: #fff; /* Change text color on hover */
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}

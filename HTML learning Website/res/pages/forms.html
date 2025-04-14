@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Forms Tutorial</title>
+    <link rel="stylesheet" href="../CSS pages/MasterStyle.css">
+</head>
+<body bgcolor="white">
+    <header>
+        <h1 align="center"><font color="blue">HTML Forms Tutorial</font></h1>
+    </header>
+    <main>
+        <section>
+            <h2><font color="green">Overview</font></h2>
+            <p>Forms are a crucial part of web development, enabling user interaction and data collection. This guide will walk you through the basic structure of an HTML form.</p>
+        </section>
+        <section>
+            <h2><font color="green">Form Tags Explanation</font></h2>
+            <ul>
+                <li><b>&lt;form&gt;</b>: Used to create an HTML form for user input. Contains all the form elements.</li>
+                <li><b>&lt;input&gt;</b>: Used to create various types of input fields, such as text, radio buttons, checkboxes, etc.</li>
+                <li><b>&lt;label&gt;</b>: Defines a label for an <b>&lt;input&gt;</b> element, improving accessibility and usability.</li>
+                <li><b>&lt;textarea&gt;</b>: Creates a multi-line text input field.</li>
+                <li><b>&lt;button&gt;</b>: Defines a clickable button.</li>
+                <li><b>&lt;select&gt;</b>: Creates a drop-down list.</li>
+                <li><b>&lt;option&gt;</b>: Defines an option in a drop-down list.</li>
+            </ul>
+        </section>
+        <section>
+            <h2><font color="green">Simple HTML Form Code</font></h2>
+            <pre>
+<code>
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Basic Form&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    
+        &lt;form method="GET"&gt;
+            &lt;label for="username"&gt;Username:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="text" id="username" name="username" required&gt;&lt;br&gt;&lt;br&gt;
+    
+            &lt;label for="email"&gt;Email:&lt;/label&gt;&lt;br&gt;
+            &lt;input type="email" id="email" name="email" required&gt;&lt;br&gt;&lt;br&gt;
+    
+            &lt;label for="comments"&gt;Comments:&lt;/label&gt;&lt;br&gt;
+            &lt;textarea id="comments" name="comments" rows="4" cols="50"&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;
+    
+            &lt;input type="submit" value="Submit"&gt;
+        &lt;/form&gt;
+    
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code>
+            </pre>
+        </section>
+        <section>
+            <h2><font color="green">Output</font></h2>
+            <div>
+                <!DOCTYPE html>
+
+    <form method="GET">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="comments">Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+            </div>
+
+    </main>
+    <footer>
+        <p align="center"><font color="blue">&copy; 2024 HTML Forms</font></p>
+    </footer>
+</body>
+</html>

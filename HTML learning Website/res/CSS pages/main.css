@@ -1,0 +1,65 @@
+/* General Styles */
+body {
+    background: linear-gradient(45deg, #2c3e50, #4b79a1); /* Cozy gradient background */
+    color: #ecf0f1; /* Light text color */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 20%; /* Fixed width for sidebar */
+    background-color: #1a1a1a; /* Dark background for sidebar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out; /* Animation */
+}
+
+.sidebar:hover {
+    transform: scale(1); /* Slightly grow on hover */
+}
+
+.sidebar iframe {
+    border-radius: 10px;
+    flex: 1;
+}
+
+/* Main Content Styles */
+.main-content {
+    width: 80%; /* Adjust width to fill remaining space */
+    background-color: #1e1e1e; /* Slightly lighter dark background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
+    overflow: hidden; /* Prevent overflow */
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content iframe {
+    border-radius: 10px;
+    flex: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow */
+    transition: transform 0.3s ease-in-out; /* Animation */
+}
+
+/* Remove hover effect on iframes */
+.main-content iframe:hover {
+    transform: none;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}

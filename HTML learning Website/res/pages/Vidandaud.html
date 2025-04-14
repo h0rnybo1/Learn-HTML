@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrating Multimedia in HTML</title>
+    <link rel="stylesheet" href="../CSS pages/MasterStyle.css">
+</head>
+<body bgcolor="white">
+    <header>
+        <h1 align="center"><font color="blue">Integrating Multimedia in HTML</font></h1>
+    </header>
+    <main>
+        <section>
+            <h2><font color="green">Introduction</font></h2>
+            <p>In this guide, we will learn how to integrate multimedia elements like images, audio, and videos into your HTML document.</p>
+        </section>
+        <section>
+            <h2><font color="green">Adding Images</font></h2>
+            <p>To add an image, use the <b>&lt;img&gt;</b> tag. Make sure to include the <b>src</b> attribute to specify the image source and the <b>alt</b> attribute for alternative text.</p>
+            <pre> &lt;img src="https://via.placeholder.com/150" alt="Example Image"&gt; </pre>
+            <img src="../img/loading.gif" alt="Img not Found">
+        </section>
+        <section>
+            <h2><font color="green">Adding Audio</font></h2>
+            <p>To embed audio, use the <b>&lt;audio&gt;</b> tag along with the <b>controls</b> attribute to provide playback controls.</p>
+            <pre> &lt;audio controls&gt;
+  &lt;source src="https://www.example.com/example.mp3" type="audio/mpeg"&gt;
+  Your browser does not support the audio element.
+&lt;/audio&gt; </pre>
+            <audio controls>
+                <source type="audio/mp3" src="../audio/Rick-Roll-Sound-Effect.mp3">
+            </audio>
+        </section>
+        <section>
+            <h2><font color="green">Adding Videos</font></h2>
+            <p>To embed videos, use the <b>&lt;video&gt;</b> tag with the <b>controls</b> attribute. Specify the video source using the <b>&lt;source&gt;</b> tag.</p>
+            <pre> &lt;video controls&gt;
+  &lt;source src="https://www.example.com/example.mp4" type="video/mp4"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt; </pre>
+            <video controls>
+                <source type="video/mp4" src="../vid/Rick Astley - Never Gonna Give You Up (Official Music Video).mp4">
+            </video>
+        </section>
+    </main>
+    <footer>
+        <p align="center"><font color="blue">&copy; 2025 Multimedia Guide</font></p>
+    </footer>
+</body>
+</html>
