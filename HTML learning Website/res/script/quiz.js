@@ -45,31 +45,36 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function handleAnswer(selectedIndex) {
-    const question = questionPool[currentQuestionIndex];
-    const options = document.querySelectorAll('.option');
+  const question = questionPool[currentQuestionIndex];
+  const options = document.querySelectorAll('.option');
 
-    options.forEach((button, index) => {
-      button.disabled = true;
-      if (index === selectedIndex) {
-        button.classList.add(index === question.correctAnswer ? 'correct' : 'incorrect');
-      } else if (index === question.correctAnswer) {
-        button.classList.add('correct');
-      }
-    });
-
-    if (selectedIndex === question.correctAnswer) {
-      score += question.marks;
+  // Add 'correct' or 'incorrect' class before disabling buttons
+  options.forEach((button, index) => {
+    if (index === selectedIndex) {
+      button.classList.add(index === question.correctAnswer ? 'correct' : 'incorrect');
+    } else if (index === question.correctAnswer) {
+      button.classList.add('correct');
     }
+  });
 
-    setTimeout(() => {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questionPool.length) {
-        displayQuestion();
-      } else {
-        showResults();
-      }
-    }, 1000);
+  // Disable all buttons
+  options.forEach(button => button.disabled = true);
+
+  // Update score if the selected answer is correct
+  if (selectedIndex === question.correctAnswer) {
+    score += question.marks;
   }
+
+  // Proceed to the next question or show results
+  setTimeout(() => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questionPool.length) {
+      displayQuestion();
+    } else {
+      showResults();
+    }
+  }, 1000);
+}
 
   function showResults() {
     const questionContainer = document.getElementById('question-container');
