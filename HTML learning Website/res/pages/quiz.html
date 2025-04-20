@@ -7,14 +7,21 @@
   <link rel="stylesheet" href="../CSS pages/quiz.css">
 </head>
 <body>
+<body>
   <div id="quiz-container">
-    <h1>HTML & CSS Quiz</h1>
-    <div id="question-container"></div>
-    <button id="submit-btn">Submit</button>
-    <div id="result-container" class="hidden">
-      <p id="score"></p>
-      <button id="retry-btn">Retry</button>
-    </div>
+    <header>
+      <h1>Web Development Quiz</h1>
+    </header>
+
+    <section id="question-section">
+      <p id="question-text">Loading...</p>
+      <div id="options-container"></div>
+    </section>
+
+    <footer>
+      <button id="next-btn" class="btn">Next Question</button>
+      <p id="score-display">Score: 0</p>
+    </footer>
   </div>
   <script src="../script/quiz.js"></script>
 </body>
