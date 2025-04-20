@@ -1,82 +1,74 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const quizData = [
-    {
-      question: "What does HTML stand for?",
-      options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
-      correct: 0
-    },
-    {
-      question: "What does CSS stand for?",
-      options: ["Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"],
-      correct: 0
-    },
-    {
-      question: "What does JS stand for?",
-      options: ["JavaScript", "Java Source", "Just Script"],
-      correct: 0
-    }
+  const questionPool = [
+    { question: "What does HTML stand for?", options: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"], correctAnswer: 0, marks: 2 },
+    { question: "What does CSS stand for?", options: ["Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"], correctAnswer: 0, marks: 2 },
+    { question: "What does JS stand for?", options: ["JavaScript", "Java Source", "Just Script"], correctAnswer: 0, marks: 4 },
+    { question: "Which HTML tag is used to define an internal style sheet?", options: ["<style>", "<css>", "<script>"], correctAnswer: 0, marks: 4 },
+    { question: "Which property is used to change the background color in CSS?", options: ["bgcolor", "background-color", "color"], correctAnswer: 1, marks: 4 },
+    { question: "Which HTML tag is used to define an external JavaScript file?", options: ["<script src='file.js'>", "<link src='file.js'>", "<js src='file.js'>"], correctAnswer: 0, marks: 4 },
+    { question: "How do you add a comment in CSS?", options: ["// This is a comment", "/* This is a comment */", "<!-- This is a comment -->"], correctAnswer: 1, marks: 2 },
+    { question: "Which HTML tag is used to define an unordered list?", options: ["<ul>", "<ol>", "<li>"], correctAnswer: 0, marks: 2 },
+    { question: "Which property is used to change the font size in CSS?", options: ["font-size", "text-size", "font-style"], correctAnswer: 0, marks: 0 },
+    { question: "Which HTML tag is used to define a hyperlink?", options: ["<a>", "<link>", "<href>"], correctAnswer: 0, marks: 4 },
+    { question: "Which CSS property is used to change the text color?", options: ["color", "text-color", "font-color"], correctAnswer: 0, marks: 2 },
+    { question: "Which HTML tag is used to define an image?", options: ["<img>", "<image>", "<src>"], correctAnswer: 0, marks: 2 },
+    { question: "Which CSS property is used to change the text alignment?", options: ["text-align", "align-text", "text-position"], correctAnswer: 0, marks: 2 },
+    { question: "Which HTML tag is used to define a table?", options: ["<table>", "<tr>", "<td>"], correctAnswer: 0, marks: 4 },
+    { question: "Which CSS property is used to change the width of an element?", options: ["width", "height", "size"], correctAnswer: 0, marks: 2 },
+    { question: "Which property is used to change the background color of an element?", options: ["background", "color", "background-color", "border-color"], correctAnswer: 2, marks: 4 },
+    { question: "Which CSS property can be used to make a rounded border around an element?", options: ["border-radius", "border-style", "border-width", "outline-radius"], correctAnswer: 0, marks: 4 },
+    { question: "Which of the following selectors has the highest specificity?", options: ["Class selector (e.g., .classname)", "ID selector (e.g., #idname)", "Type selector (e.g., div)", "Universal selector (e.g., *)"], correctAnswer: 1, marks: 4 },
+    { question: "Which CSS property is used to add a border around an element?", options: ["border-style", "border-color", "border-width", "border"], correctAnswer: 3, marks: 4 },
+    { question: "Which CSS property is used to define the spacing around an element’s border?", options: ["padding", "margin", "border-spacing", "outline-spacing"], correctAnswer: 1, marks: 4 },
+    { question: "Which CSS property is used to apply rounded corners to an element?", options: ["border-radius", "border-style", "border-width", "border-color"], correctAnswer: 0, marks: 4 },
+    { question: "Which of the following property changes the color of the left border?", options: [":border-top-color", ":border-left-color", ":border-right-color"], correctAnswer: 1, marks: 4 }
   ];
 
-  let currentQuestionIndex = 0;
-  let score = 0;
-
-  const questionContainer = document.getElementById('question-container');
-  const submitBtn = document.getElementById('submit-btn');
-  const resultContainer = document.getElementById('result-container');
-  const scoreDisplay = document.getElementById('score');
-  const retryBtn = document.getElementById('retry-btn');
-
-  function loadQuestion() {
-    const currentQuestion = quizData[currentQuestionIndex];
-    questionContainer.innerHTML = `
-      <div class="question">
-        <p>${currentQuestion.question}</p>
-        ${currentQuestion.options.map((option, index) => `
-          <label>
-            <input type="radio" name="answer" value="${index}">
-            ${option}
-          </label>
-        `).join('')}
-      </div>
-    `;
-  }
-
-  function handleSubmit() {
-    const selectedOption = document.querySelector('input[name="answer"]:checked');
-    if (selectedOption) {
-      const answerIndex = parseInt(selectedOption.value);
-      if (answerIndex === quizData[currentQuestionIndex].correct) {
-        score++;
-      }
-      currentQuestionIndex++;
-      if (currentQuestionIndex < quizData.length) {
-        loadQuestion();
-      } else {
-        showResult();
-      }
-    } else {
-      alert('Please select an answer');
+  // Shuffle the question pool and select 15 questions
+  const selectedQuestions = [];
+  while (selectedQuestions.length < 15) {
+    const randomIndex = Math.floor(Math.random() * questionPool.length);
+    const randomQuestion = questionPool[randomIndex];
+    if (!selectedQuestions.includes(randomQuestion)) {
+      selectedQuestions.push(randomQuestion);
     }
   }
 
-  function showResult() {
-    questionContainer.classList.add('hidden');
-    submitBtn.classList.add('hidden');
+  // Display questions and options
+  const questionContainer = document.getElementById('question-container');
+  selectedQuestions.forEach((q, index) => {
+    const questionDiv = document.createElement('div');
+    questionDiv.classList.add('question');
+    questionDiv.innerHTML = `
+      <p>${index + 1}. ${q.question}</p>
+      ${q.options.map((option, i) => `
+        <label>
+          <input type="radio" name="q${index}" value="${i}">
+          ${option}
+        </label>
+      `).join('')}
+    `;
+    questionContainer.appendChild(questionDiv);
+  });
+
+  // Handle form submission
+  document.getElementById('submit-btn').addEventListener('click', () => {
+    let score = 0;
+    selectedQuestions.forEach((q, index) => {
+      const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
+      if (selectedOption && parseInt(selectedOption.value) === q.correctAnswer) {
+        score += q.marks;
+      }
+    });
+
+    // Display result
+    const resultContainer = document.getElementById('result-container');
     resultContainer.classList.remove('hidden');
-    scoreDisplay.textContent = `You scored ${score} out of ${quizData.length}`;
-  }
+    document.getElementById('score').textContent = `Your score: ${score} / 50`;
+  });
 
-  function handleRetry() {
-    currentQuestionIndex = 0;
-    score = 0;
-    resultContainer.classList.add('hidden');
-    questionContainer.classList.remove('hidden');
-    submitBtn.classList.remove('hidden');
-    loadQuestion();
-  }
-
-  submitBtn.addEventListener('click', handleSubmit);
-  retryBtn.addEventListener('click', handleRetry);
-
-  loadQuestion();
+  // Retry quiz
+  document.getElementById('retry-btn').addEventListener('click', () => {
+    location.reload();
+  });
 });
