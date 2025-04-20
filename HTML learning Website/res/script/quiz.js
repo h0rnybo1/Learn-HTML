@@ -1,82 +1,67 @@
-const questions = [
+// quiz.js
+
+const quizData = [
   {
     question: "What does HTML stand for?",
-    options: ["Hyper Text Markup Language", "High Text Machine Language", "Hyperlink and Text Markup Language", "None of the above"],
-    answer: 0,
-    marks: 1
+    options: ["Hyper Text Markup Language", "Hyperlinks and Text Markup Language", "Home Tool Markup Language"],
+    correct: 0
   },
   {
-    question: "Which tag is used to define an internal style sheet?",
-    options: ["<style>", "<css>", "<script>", "<styles>"],
-    answer: 0,
-    marks: 1
+    question: "What does CSS stand for?",
+    options: ["Cascading Style Sheets", "Colorful Style Sheets", "Computer Style Sheets"],
+    correct: 0
   },
   {
-    question: "Which tag is used to define an unordered list?",
-    options: ["<ul>", "<ol>", "<li>", "<list>"],
-    answer: 0,
-    marks: 1
-  },
-  {
-    question: "What does the <a> tag define?",
-    options: ["Hyperlink", "Anchor", "Both", "None"],
-    answer: 2,
-    marks: 2
-  },
-  {
-    question: "Which attribute is used to define the background color?",
-    options: ["bgcolor", "background", "color", "None"],
-    answer: 0,
-    marks: 2
-  },
-  {
-    question: "Which tag is used to define a table?",
-    options: ["<table>", "<tr>", "<td>", "<th>"],
-    answer: 0,
-    marks: 2
-  },
-  {
-    question: "Which tag is used to define a paragraph?",
-    options: ["<p>", "<para>", "<text>", "<section>"],
-    answer: 0,
-    marks: 1
-  },
-  {
-    question: "What does the <img> tag define?",
-    options: ["Image", "Input", "Icon", "None"],
-    answer: 0,
-    marks: 1
-  },
-  {
-    question: "Which tag is used to define a list item?",
-    options: ["<li>", "<item>", "<list>", "<ul>"],
-    answer: 0,
-    marks: 1
-  },
-  {
-    question: "Which tag is used to define a header in a table?",
-    options: ["<th>", "<thead>", "<header>", "<head>"],
-    answer: 0,
-    marks: 2
-  },
-  {
-    question: "Which tag is used to define a footer in a table?",
-    options: ["<tfoot>", "<tfooting>", "<footer>", "<foot>"],
-    answer: 0,
-    marks: 2
-  },
-  {
-    question: "Which tag is used to define a section in a document?",
-    options: ["<section>", "<div>", "<article>", "<aside>"],
-    answer: 0,
-    marks: 2
-  },
-  {
-    question: "Which tag is used to define a navigation link?",
-    options: ["<nav>", "<link>", "<a>", "<ul>"],
-    answer: 0,
-    marks: 1
-  },
-  {
-    question:
-::contentReference[oaicite:19]{index=19}
+    question: "What does JS stand for?",
+    options: ["JavaScript", "Java Source", "Just Script"],
+    correct: 0
+  }
+];
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const submitButton = document.getElementById('submit');
+const scoreElement = document.getElementById('score');
+
+function loadQuestion() {
+  const currentQuestion = quizData[currentQuestionIndex];
+  questionElement.textContent = currentQuestion.question;
+  optionsElement.innerHTML = '';
+  currentQuestion.options.forEach((option, index) => {
+    const optionElement = document.createElement('div');
+    optionElement.innerHTML = `<input type="radio" name="option" value="${index}"> ${option}`;
+    optionsElement.appendChild(optionElement);
+  });
+}
+
+function checkAnswer() {
+  const selectedOption = document.querySelector('input[name="option"]:checked');
+  if (selectedOption) {
+    const selectedValue = parseInt(selectedOption.value);
+    if (selectedValue === quizData[currentQuestionIndex].correct) {
+      score++;
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  } else {
+    alert('Please select an answer');
+  }
+}
+
+function showResult() {
+  questionElement.textContent = 'Quiz Completed!';
+  optionsElement.innerHTML = '';
+  submitButton.style.display = 'none';
+  scoreElement.textContent = `Your score: ${score} out of ${quizData.length}`;
+}
+
+submitButton.addEventListener('click', checkAnswer);
+
+loadQuestion();
