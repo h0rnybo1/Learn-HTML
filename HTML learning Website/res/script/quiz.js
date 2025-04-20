@@ -24,51 +24,62 @@ document.addEventListener('DOMContentLoaded', function () {
     { question: "Which of the following property changes the color of the left border?", options: [":border-top-color", ":border-left-color", ":border-right-color"], correctAnswer: 1, marks: 4 }
   ];
 
-  // Shuffle the question pool and select 15 questions
-  const selectedQuestions = [];
-  while (selectedQuestions.length < 15) {
-    const randomIndex = Math.floor(Math.random() * questionPool.length);
-    const randomQuestion = questionPool[randomIndex];
-    if (!selectedQuestions.includes(randomQuestion)) {
-      selectedQuestions.push(randomQuestion);
-    }
+  let currentQuestionIndex = 0;
+  let score = 0;
+
+  function displayQuestion() {
+    const question = questionPool[currentQuestionIndex];
+    const questionElement = document.getElementById('question');
+    const optionsContainer = document.getElementById('options');
+
+    questionElement.textContent = question.question;
+    optionsContainer.innerHTML = '';
+
+    question.options.forEach((option, index) => {
+      const button = document.createElement('button');
+      button.textContent = option;
+      button.classList.add('option');
+      button.onclick = () => handleAnswer(index);
+      optionsContainer.appendChild(button);
+    });
   }
 
-  // Display questions and options
-  const questionContainer = document.getElementById('question-container');
-  selectedQuestions.forEach((q, index) => {
-    const questionDiv = document.createElement('div');
-    questionDiv.classList.add('question');
-    questionDiv.innerHTML = `
-      <p>${index + 1}. ${q.question}</p>
-      ${q.options.map((option, i) => `
-        <label>
-          <input type="radio" name="q${index}" value="${i}">
-          ${option}
-        </label>
-      `).join('')}
-    `;
-    questionContainer.appendChild(questionDiv);
-  });
+  function handleAnswer(selectedIndex) {
+    const question = questionPool[currentQuestionIndex];
+    const options = document.querySelectorAll('.option');
 
-  // Handle form submission
-  document.getElementById('submit-btn').addEventListener('click', () => {
-    let score = 0;
-    selectedQuestions.forEach((q, index) => {
-      const selectedOption = document.querySelector(`input[name="q${index}"]:checked`);
-      if (selectedOption && parseInt(selectedOption.value) === q.correctAnswer) {
-        score += q.marks;
+    options.forEach((button, index) => {
+      button.disabled = true;
+      if (index === selectedIndex) {
+        button.classList.add(index === question.correctAnswer ? 'correct' : 'incorrect');
+      } else if (index === question.correctAnswer) {
+        button.classList.add('correct');
       }
     });
 
-    // Display result
-    const resultContainer = document.getElementById('result-container');
-    resultContainer.classList.remove('hidden');
-    document.getElementById('score').textContent = `Your score: ${score} / 50`;
-  });
+    if (selectedIndex === question.correctAnswer) {
+      score += question.marks;
+    }
 
-  // Retry quiz
-  document.getElementById('retry-btn').addEventListener('click', () => {
-    location.reload();
-  });
+    setTimeout(() => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questionPool.length) {
+        displayQuestion();
+      } else {
+        showResults();
+      }
+    }, 1000);
+  }
+
+  function showResults() {
+    const questionContainer = document.getElementById('question-container');
+    const resultContainer = document.getElementById('result-container');
+    const scoreElement = document.getElementById('score');
+
+    questionContainer.style.display = 'none';
+    resultContainer.style.display = 'block';
+    scoreElement.textContent = `Your score: ${score}`;
+  }
+
+  displayQuestion();
 });
