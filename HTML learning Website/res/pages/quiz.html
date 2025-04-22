@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HTML & CSS Quiz</title>
-  <link rel="stylesheet" href="../CSS pages/quiz.css">
+  <link rel="stylesheet" href="../CSS pages/quiz.css" />
 </head>
 <body>
-<body>
-  <script src="../script/quiz.js"></script>
   <div id="quiz-container">
     <header>
       <h1>Web Development Quiz</h1>
@@ -20,10 +18,12 @@
     </section>
 
     <footer>
-      <button id="next-btn" class="btn">Next Question</button>
+      <button id="next-btn" class="btn" disabled>Next Question</button>
       <p id="score-display">Score: 0</p>
     </footer>
   </div>
 
+  <!-- IMPORTANT: Move your script to the bottom so DOM is ready -->
+  <script src="../script/quiz.js"></script>
 </body>
 </html>
