@@ -27,64 +27,64 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentQuestionIndex = 0;
   let score = 0;
 
-  function displayQuestion() {
-    const question = questionPool[currentQuestionIndex];
-    const questionElement = document.getElementById('question');
-    const optionsContainer = document.getElementById('options');
+  const questionText = document.getElementById('question-text');
+  const optionsContainer = document.getElementById('options-container');
+  const nextBtn = document.getElementById('next-btn');
+  const scoreDisplay = document.getElementById('score-display');
 
-    questionElement.textContent = question.question;
+  function displayQuestion() {
+    const currentQuestion = questionPool[currentQuestionIndex];
+
+    questionText.textContent = currentQuestion.question;
     optionsContainer.innerHTML = '';
 
-    question.options.forEach((option, index) => {
+    currentQuestion.options.forEach((option, index) => {
       const button = document.createElement('button');
       button.textContent = option;
       button.classList.add('option');
       button.onclick = () => handleAnswer(index);
       optionsContainer.appendChild(button);
     });
+
+    nextBtn.disabled = true;
   }
 
   function handleAnswer(selectedIndex) {
-  const question = questionPool[currentQuestionIndex];
-  const options = document.querySelectorAll('.option');
+    const currentQuestion = questionPool[currentQuestionIndex];
+    const options = document.querySelectorAll('.option');
 
-  // Add 'correct' or 'incorrect' class before disabling buttons
-  options.forEach((button, index) => {
-    if (index === selectedIndex) {
-      button.classList.add(index === question.correctAnswer ? 'correct' : 'incorrect');
-    } else if (index === question.correctAnswer) {
-      button.classList.add('correct');
+    options.forEach((button, index) => {
+      if (index === selectedIndex) {
+        button.classList.add(index === currentQuestion.correctAnswer ? 'correct' : 'incorrect');
+      } else if (index === currentQuestion.correctAnswer) {
+        button.classList.add('correct');
+      }
+      button.disabled = true;
+    });
+
+    if (selectedIndex === currentQuestion.correctAnswer) {
+      score += currentQuestion.marks;
     }
-  });
 
-  // Disable all buttons
-  options.forEach(button => button.disabled = true);
-
-  // Update score if the selected answer is correct
-  if (selectedIndex === question.correctAnswer) {
-    score += question.marks;
+    scoreDisplay.textContent = `Score: ${score}`;
+    nextBtn.disabled = false;
   }
 
-  // Proceed to the next question or show results
-  setTimeout(() => {
+  nextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < questionPool.length) {
       displayQuestion();
     } else {
       showResults();
     }
-  }, 1000);
-}
+  });
 
   function showResults() {
-    const questionContainer = document.getElementById('question-container');
-    const resultContainer = document.getElementById('result-container');
-    const scoreElement = document.getElementById('score');
-
-    questionContainer.style.display = 'none';
-    resultContainer.style.display = 'block';
-    scoreElement.textContent = `Your score: ${score}`;
+    questionText.textContent = `Quiz complete! 🎉`;
+    optionsContainer.innerHTML = `<p>Your final score is: ${score}</p>`;
+    nextBtn.disabled = true;
   }
 
+  // Start quiz
   displayQuestion();
 });
